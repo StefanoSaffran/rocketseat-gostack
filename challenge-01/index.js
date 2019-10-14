@@ -19,9 +19,8 @@ server.use((req, res, next) => {
 const checkProjectExists = (req, res, next) => {
   const { id } = req.params;
   const project = projects.find(p => p.id === id)
-  //const project = projects.filter(project => project.id === req.params.id);
 
-  if (project === undefined) return res.status(400).json({ error: 'Project not found' });
+  if (!project) return res.status(400).json({ error: 'Project not found' });
 
   req.project = project;
   return next();
