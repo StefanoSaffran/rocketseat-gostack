@@ -4,6 +4,6 @@
 
 <hr />
 
-<p align="center" >
+<h3 align="center" >
  :rocket::rocket: Repository for the GoStack's challenges. :rocket::rocket:
-</p>
+</h3>
