@@ -61,9 +61,7 @@ class MembershipController {
       price,
     });
 
-    const membershipInfo = await Membership.findAll({
-      where: { student_id: membership.student_id },
-      attributes: ['start_date', 'end_date', 'price'],
+    const membershipInfo = await Membership.findByPk(membership.id, {
       include: [
         {
           model: Student,
@@ -78,7 +76,6 @@ class MembershipController {
       ],
     });
 
-    console.log(membershipInfo);
     await Queue.add(ConfirmationMail.key, {
       membershipInfo,
     });
