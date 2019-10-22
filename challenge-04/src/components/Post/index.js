@@ -11,7 +11,7 @@ const Post = ({ post }) => {
           <span>{post.date}</span>
         </div>
       </div>
-      <p className="author-post">{post.content}</p>
+      <p>{post.content}</p>
     </>
   )
 }

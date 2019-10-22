@@ -32,6 +32,7 @@ ul.container div.comments-info div {
 ul.container div.comments-info div p {
   line-height: 20px;
   font-size: 13px;
+  padding-bottom: 20px;
 }
 
 ul.container div.comments-info div p strong {
