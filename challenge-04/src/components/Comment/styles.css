@@ -1,0 +1,30 @@
+ul.container div.comments-info {
+  display: flex;
+  align-items: flex-start;
+  margin: 15px
+}
+
+ul.container div.comments-info img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+
+
+ul.container div.comments-info div {
+  max-width: 622px;
+  width: 100%;
+  border-radius: 20px;
+  background: #eeeeee;
+}
+
+ul.container div.comments-info div p {
+  line-height: 20px;
+  font-size: 13px;
+}
+
+ul.container div.comments-info div p strong {
+  margin-right: 3px;
+}
