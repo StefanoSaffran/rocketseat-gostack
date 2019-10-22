@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header id="main-header">
       <nav className="content">
-        <h2>Facebook</h2>
+        <h1>facebook</h1>
         <a href="#">Meu perfil</a>
       </nav>
     </header>

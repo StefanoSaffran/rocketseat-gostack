@@ -11,9 +11,8 @@ header#main-header .content {
   height: 100%;
 }
 
-header#main-header .content h2 {
+header#main-header .content h1 {
   color: #fff;
-  font-size: 24px;
   font-weight: bold;
 
 }
@@ -36,7 +35,7 @@ header#main-header .content a {
     justify-content: space-between;
   }
   
-  header#main-header .content h2 {
+  header#main-header .content h1 {
     margin-left: 45px;
   }
   
