@@ -6,7 +6,10 @@ const Header = () => {
     <header id="main-header">
       <nav className="content">
         <h1>facebook</h1>
-        <a href="#">Meu perfil</a>
+        <div>
+          <a href="#">Meu perfil</a>
+          <i className="material-icons">account_circle</i>
+        </div>
       </nav>
     </header>
   )
