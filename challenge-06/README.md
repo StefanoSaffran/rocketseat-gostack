@@ -11,8 +11,8 @@
 </h3>
 
 <div align="center">
-<img alt="GoStack" src="src/assets/screenshot01" width="200px" padding="10px"/>
-<img alt="GoStack" src="src/assets/screenshot02" width="200px" padding="10px"/>
+<img alt="main" src="src/assets/screenshot01.png" width="200px" padding="10px"/>
+<img alt="user-details" src="src/assets/screenshot02.png" width="200px" padding="10px"/>
 </div>
 <p align="center">
 <a href="https://github.com/Rocketseat/bootcamp-gostack-desafio-06/blob/master/README.md">Link to the challenge</a>
