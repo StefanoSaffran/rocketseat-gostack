@@ -24,6 +24,18 @@ const rotate = keyframes`
   }
 `;
 
+export const Message = styled.div`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+
+  p {
+    color: red;
+    text-align: center;
+  }
+`;
+
 export const SubmitButton = styled.button.attrs(props => ({
   type: 'submit',
   disabled: props.loading,

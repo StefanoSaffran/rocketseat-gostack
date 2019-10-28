@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import api from '../../services/api';
 
 import Container from '../../components/Container';
-import { Form, SubmitButton, List } from './styles';
+import { Form, SubmitButton, List, Message } from './styles';
 
 export default class Main extends Component {
   state = {
@@ -13,6 +13,7 @@ export default class Main extends Component {
     repositories: [],
     loading: false,
     error: false,
+    message: '',
   };
 
   componentDidMount() {
@@ -55,20 +56,22 @@ export default class Main extends Component {
 
       this.setState({
         repositories: [...repositories, data],
-        newRepo: '',
-        loading: false,
       });
     } catch (error) {
       this.setState({
+        error: true,
+        message: error.message,
+      });
+    } finally {
+      this.setState({
         newRepo: '',
         loading: false,
-        error: true,
       });
     }
   };
 
   render() {
-    const { newRepo, repositories, loading, error } = this.state;
+    const { newRepo, repositories, loading, error, message } = this.state;
 
     const repos = repositories.map(repository => (
       <li key={repository.name}>
@@ -102,7 +105,7 @@ export default class Main extends Component {
             )}
           </SubmitButton>
         </Form>
-
+        <Message>{error && <p>{message}</p>}</Message>
         <List>{repos}</List>
       </Container>
     );
