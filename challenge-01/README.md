@@ -10,7 +10,18 @@
   Challenge 1: NodeJS Concepts
 </h3>
 
+## About the challenge
+
+Application to store projects and their tasks from scratch using [Express](https://expressjs.com/pt-br/).
+
 <p align="center">
 <a href="https://github.com/Rocketseat/bootcamp-gostack-desafio-01/blob/master/README.md#desafio-01-conceitos-do-nodejs">Link to the challenge</a>
 </p>
 
+## :rocket: Technologies
+
+This project was developed with the following technologies:
+
+-  [Node.js][nodejs]
+-  [Express](https://expressjs.com/)
+-  [nodemon](https://nodemon.io/)
