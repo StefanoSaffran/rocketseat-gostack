@@ -4,8 +4,6 @@
     GoStack's challenges repository.
 </h1>
 
----
-
 ## :mailbox_with_mail: Get in touch!
 
 [LinkedIn](https://www.linkedin.com/in/stefanosaffran/) | [Website](https://stefanosaffran.com)
