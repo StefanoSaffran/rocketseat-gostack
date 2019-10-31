@@ -31,7 +31,7 @@ This project was developed with the following technologies:
 
 ---
 
-## Get in touch!
+## :mailbox_with_mail: Get in touch!
 
 [LinkedIn](https://www.linkedin.com/in/stefanosaffran/) | [Website](https://stefanosaffran.com)
 
