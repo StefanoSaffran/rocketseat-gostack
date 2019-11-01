@@ -79,9 +79,19 @@ export const List = styled.ul`
       border-top: 1px solid #eee;
     }
 
-    a {
-      color: #7159c1;
-      text-decoration: none;
+    div {
+      a {
+        color: #7159c1;
+        text-decoration: none;
+        margin-right: 8px;
+      }
+
+      button {
+        color: #7159c1;
+        text-decoration: none;
+        background: none;
+        border: 0;
+      }
     }
   }
 `;

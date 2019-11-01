@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { FaGithubAlt, FaPlus, FaSpinner } from 'react-icons/fa';
+import {
+  FaGithubAlt,
+  FaPlus,
+  FaSpinner,
+  FaRegEye,
+  FaRegTrashAlt,
+} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
@@ -48,6 +54,8 @@ export default class Main extends Component {
 
       if (checkRepoExists) throw new Error('Duplicated Repository');
 
+      if (newRepo === '') throw new Error('Repository name required');
+
       const response = await api.get(`/repos/${newRepo}`);
 
       const data = {
@@ -70,15 +78,31 @@ export default class Main extends Component {
     }
   };
 
+  handleDelete = name => {
+    const { repositories } = this.state;
+
+    this.setState({
+      repositories: repositories.filter(repo => repo.name !== name),
+    });
+  };
+
   render() {
     const { newRepo, repositories, loading, error, message } = this.state;
 
     const repos = repositories.map(repository => (
       <li key={repository.name}>
         <span>{repository.name}</span>
-        <Link to={`/repository/${encodeURIComponent(repository.name)}`}>
-          Details
-        </Link>
+        <div>
+          <Link to={`/repository/${encodeURIComponent(repository.name)}`}>
+            <FaRegEye size={16} />
+          </Link>
+          <button
+            type="button"
+            onClick={() => this.handleDelete(repository.name)}
+          >
+            <FaRegTrashAlt size={16} />
+          </button>
+        </div>
       </li>
     ));
 
