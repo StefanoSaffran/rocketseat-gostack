@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="src/assets/logo.png" />
+    <img src="src/assets/logo.png" >
     <br>
     Bootcamp GoStack 9.0
 </h1>
