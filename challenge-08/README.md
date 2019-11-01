@@ -21,6 +21,7 @@
 This project was developed with the following technologies:
 
 -  [ReactJS](https://reactjs.org/)
+-  [React Hooks](https://reactjs.org/docs/hooks-intro.html)
 -  [React Native](https://facebook.github.io/react-native/)
 -  [styled-components](https://www.styled-components.com/)
 -  [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)
