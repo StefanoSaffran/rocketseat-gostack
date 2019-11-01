@@ -1,9 +1,7 @@
-<p align="center">
-<img src="src/assets/logo.png" />
-</p>
-
 <h1 align="center">
-  Bootcamp GoStack 9.0 
+    <img src="src/assets/logo.png" />
+    <br>
+    Bootcamp GoStack 9.0 
 </h1>
 
 <h3 align="center">
@@ -13,3 +11,28 @@
 <p align="center">
 <a href="https://github.com/Rocketseat/bootcamp-gostack-desafio-02/blob/master/README.md">Link to the challenge</a>
 </p>
+
+## :rocket: Built with
+
+This project was developed with the following technologies:
+
+-  [Node.js][nodejs]
+-  [Express](https://expressjs.com/)
+-  [nodemon](https://nodemon.io/)
+-  [Sucrase](https://github.com/alangpierce/sucrase)
+-  [Docker](https://www.docker.com/docker-community)
+-  [Sequelize](http://docs.sequelizejs.com/)
+-  [PostgreSQL](https://www.postgresql.org/)
+-  [node-postgres](https://www.npmjs.com/package/pg)
+-  [JWT](https://jwt.io/)
+-  [Bcrypt](https://www.npmjs.com/package/bcrypt)
+-  [Yup](https://www.npmjs.com/package/yup)
+-  [VS Code](https://code.visualstudio.com/)
+
+---
+
+## :mailbox_with_mail: Get in touch!
+
+[LinkedIn](https://www.linkedin.com/in/stefanosaffran/) | [Website](https://stefanosaffran.com)
+
+[nodejs]: https://nodejs.org/
