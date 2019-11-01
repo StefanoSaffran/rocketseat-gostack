@@ -7,11 +7,12 @@ import {
   FaRegTrashAlt,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import api from '../../services/api';
 
 import Container from '../../components/Container';
-import { Form, SubmitButton, List, Message } from './styles';
+import { Form, SubmitButton, List } from './styles';
 
 export default class Main extends Component {
   state = {
@@ -19,7 +20,6 @@ export default class Main extends Component {
     repositories: [],
     loading: false,
     error: false,
-    message: '',
   };
 
   componentDidMount() {
@@ -65,11 +65,12 @@ export default class Main extends Component {
       this.setState({
         repositories: [...repositories, data],
       });
+      toast.success('Repository added');
     } catch (error) {
       this.setState({
         error: true,
-        message: error.message,
       });
+      toast.error(error.message);
     } finally {
       this.setState({
         newRepo: '',
@@ -84,10 +85,11 @@ export default class Main extends Component {
     this.setState({
       repositories: repositories.filter(repo => repo.name !== name),
     });
+    toast.warning('Repository deleted');
   };
 
   render() {
-    const { newRepo, repositories, loading, error, message } = this.state;
+    const { newRepo, repositories, loading, error } = this.state;
 
     const repos = repositories.map(repository => (
       <li key={repository.name}>
@@ -129,7 +131,6 @@ export default class Main extends Component {
             )}
           </SubmitButton>
         </Form>
-        <Message>{error && <p>{message}</p>}</Message>
         <List>{repos}</List>
       </Container>
     );
