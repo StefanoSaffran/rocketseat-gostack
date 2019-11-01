@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="src/assets/icon.png" />
+    <img src="https://res.cloudinary.com/stefanosaffran/image/upload/co_rgb:7159c1,e_colorize:100/v1572640709/samples/my%20folder/logo_bw1bnc.png" />
     <br>
     Bootcamp GoStack 9.0
 </h1>
