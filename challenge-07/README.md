@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-<img src=".github/demo.gif" height="400">
+<img src=".github/Rocketshoes.gif" height="400">
 </p>
 
 ## :rocket: Built with
