@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="src/assets/icon.png" />
+    <img src="https://res.cloudinary.com/stefanosaffran/image/upload/co_rgb:7159c1,e_colorize:100/v1572640709/samples/my%20folder/logo_bw1bnc.png" />
     <br>
     Bootcamp GoStack 9.0
 </h1>
@@ -21,6 +21,7 @@
 This project was developed with the following technologies:
 
 -  [ReactJS](https://reactjs.org/)
+-  [React Hooks](https://reactjs.org/docs/hooks-intro.html)
 -  [React Native](https://facebook.github.io/react-native/)
 -  [styled-components](https://www.styled-components.com/)
 -  [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)
