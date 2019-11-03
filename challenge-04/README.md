@@ -1,7 +1,3 @@
-<p align="center">
- 
-</p>
-
 <h1 align="center">
   <img alt="GoStack" src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/bootcamp-header.png" width="200px" />
   <br>
@@ -24,18 +20,9 @@ You can see the results <a href="https://jolly-bassi-20c15e.netlify.com/">here</
 This project was developed with the following technologies:
 
 -  [ReactJS](https://reactjs.org/)
--  [React Native](https://facebook.github.io/react-native/)
--  [styled-components](https://www.styled-components.com/)
--  [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)
--  [Redux](https://redux.js.org/)
--  [Redux-Saga](https://redux-saga.js.org/)
--  [React Navigation](https://reactnavigation.org/)
--  [Axios](https://github.com/axios/axios)
--  [JSON Server](https://github.com/typicode/json-server)
--  [Reactotron](https://infinite.red/reactotron)
--  [Polished](https://polished.js.org/)
--  [Immer](https://github.com/immerjs/immer)
--  [NumeralJS](http://numeraljs.com/)
+-  [Webpack](https://webpack.js.org/)
+-  [Babel](https://babeljs.io/)
+-  [Material icons](https://material.io/resources/icons/?style=baseline)
 -  [VS Code](https://code.visualstudio.com/)
 
 ## :mailbox_with_mail: Get in touch!
