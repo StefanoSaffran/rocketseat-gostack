@@ -1,4 +1,6 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
+
 import Student from '../models/Student';
 
 class StudentController {
@@ -38,6 +40,25 @@ class StudentController {
       weight,
       height,
     });
+  }
+
+  async index(req, res) {
+    const { filter } = req.query;
+
+    if (filter) {
+      const filteredStudents = await Student.findAll({
+        where: {
+          name: {
+            [Op.iLike]: `%${filter}%`,
+          },
+        },
+      });
+
+      return res.json(filteredStudents);
+    }
+    const students = await Student.findAll();
+
+    return res.json(students);
   }
 
   async update(req, res) {
