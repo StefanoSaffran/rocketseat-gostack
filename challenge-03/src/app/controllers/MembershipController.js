@@ -84,7 +84,9 @@ class MembershipController {
   }
 
   async index(req, res) {
-    const memberships = await Membership.findAll();
+    const memberships = await Membership.findAll({
+      attributes: ['id', 'start_date', 'end_date', 'price', 'active'],
+    });
 
     return res.json(memberships);
   }
@@ -113,10 +115,10 @@ class MembershipController {
         .json({ error: 'Student does not have a membership' });
     }
 
-    if (!membership.expired) {
+    if (membership.active) {
       return res
         .status(400)
-        .json({ error: 'Only expired membership can be updated' });
+        .json({ error: 'Only inactive membership can be updated' });
     }
 
     console.log(parseISO(start_date), new Date());
