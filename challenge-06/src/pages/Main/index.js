@@ -12,6 +12,7 @@ import {
   SubmitButton,
   List,
   User,
+  DeleteButton,
   Avatar,
   Name,
   Bio,
@@ -75,8 +76,6 @@ export default class Main extends Component {
 
       this.setState({
         users: [...users, data],
-        newUser: '',
-        loading: false,
         error: false,
       });
     } catch (err) {
@@ -90,6 +89,16 @@ export default class Main extends Component {
     }
 
     Keyboard.dismiss();
+  };
+
+  handleDeleteUser = user => {
+    const { users } = this.state;
+
+    const filteredUsers = users.filter(u => u.name !== user.name);
+
+    this.setState({
+      users: filteredUsers,
+    });
   };
 
   handleNavigate = user => {
@@ -132,6 +141,15 @@ export default class Main extends Component {
           keyExtractor={user => user.login}
           renderItem={({ item }) => (
             <User>
+              <DeleteButton>
+                <Icon
+                  name="clear"
+                  size={25}
+                  color="red"
+                  fontWeight="bold"
+                  onPress={() => this.handleDeleteUser(item)}
+                />
+              </DeleteButton>
               <Avatar source={{ uri: item.avatar }} />
               <Name>{item.name}</Name>
               <Bio>{item.bio}</Bio>

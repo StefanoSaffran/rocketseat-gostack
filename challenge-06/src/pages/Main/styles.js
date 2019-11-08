@@ -34,6 +34,12 @@ export const SubmitButton = styled(RectButton)`
   opacity: ${props => (props.loading ? 0.7 : 1)};
 `;
 
+export const DeleteButton = styled(RectButton)`
+  width: 100%;
+  justify-content: flex-end;
+  align-items: flex-end;
+`;
+
 export const List = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
 })`
