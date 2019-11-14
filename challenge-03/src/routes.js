@@ -34,16 +34,20 @@ routes.post('/help-orders/:id/answer', AnswerController.store);
 
 routes.post('/students', StudentController.store);
 routes.get('/students', StudentController.index);
+routes.get('/students/:id', StudentController.show);
 routes.put('/students/:id', StudentController.update);
+routes.delete('/students/:id', StudentController.delete);
 
 routes.post('/plans', PlanController.store);
 routes.get('/plans', PlanController.index);
+routes.get('/plans/:id', PlanController.show);
 routes.put('/plans/:id', PlanController.update);
 routes.delete('/plans/:id', PlanController.delete);
 
-routes.post('/membership', MembershipController.store);
-routes.get('/membership', MembershipController.index);
-routes.put('/membership/:studentId', MembershipController.update);
-routes.delete('/membership/:studentId', MembershipController.delete);
+routes.post('/memberships', MembershipController.store);
+routes.get('/memberships', MembershipController.index);
+routes.get('/memberships/:studentId', MembershipController.show);
+routes.put('/memberships/:studentId', MembershipController.update);
+routes.delete('/memberships/:studentId', MembershipController.delete);
 
 export default routes;
