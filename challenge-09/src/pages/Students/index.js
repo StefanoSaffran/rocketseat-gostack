@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import { confirmAlert } from 'react-confirm-alert';
 import { useDispatch } from 'react-redux';
 import { MdPersonAdd } from 'react-icons/md';
 
@@ -15,6 +16,7 @@ export default function Students() {
   const dispatch = useDispatch();
   const [students, setStudents] = useState([]);
   const [filter, setFilter] = useState('');
+  // const [confirm, setConfirm] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const textAlignStyle = {
@@ -37,14 +39,23 @@ export default function Students() {
   };
 
   const handleDelete = student => {
-    const confirm = window.confirm(
-      `Confirmar remoção do aluno ${student.name} ?`
-    );
-
-    if (confirm) {
-      dispatch(deleteStudentsRequest(student.id));
-      setStudents(students.filter(s => s.id !== student.id));
-    }
+    confirmAlert({
+      title: 'Confirme a exclusão',
+      message: `Deseja remover o aluno ${student.name} ?`,
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            dispatch(deleteStudentsRequest(student.id));
+            setStudents(students.filter(s => s.id !== student.id));
+          },
+        },
+        {
+          label: 'No',
+          onClick: () => '',
+        },
+      ],
+    });
   };
 
   const filteredStudents = filter
