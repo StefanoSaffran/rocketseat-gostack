@@ -44,6 +44,23 @@ class AnswerController {
 
     return res.json(order);
   }
+
+  async index(req, res) {
+    const orders = await Order.findAll({
+      where: {
+        answer: null,
+      },
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    return res.json(orders);
+  }
 }
 
 export default new AnswerController();
