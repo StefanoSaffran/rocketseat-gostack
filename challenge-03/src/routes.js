@@ -19,8 +19,8 @@ routes.post('/sessions', SessionController.store);
 routes.get('/students/:id/checkins', CheckinController.index);
 routes.post('/students/:id/checkins', CheckinController.store);
 
-routes.get('/students/:id/help-orders', OrderController.index);
 routes.post('/students/:id/help-orders', OrderController.store);
+routes.get('/students/:id/help-orders', OrderController.index);
 
 /**
  * Authentication middleware, all routes that
@@ -31,6 +31,7 @@ routes.use(authMiddleware);
 routes.put('/users', UserController.update);
 
 routes.post('/help-orders/:id/answer', AnswerController.store);
+routes.get('/help-orders', AnswerController.index);
 
 routes.post('/students', StudentController.store);
 routes.get('/students', StudentController.index);
