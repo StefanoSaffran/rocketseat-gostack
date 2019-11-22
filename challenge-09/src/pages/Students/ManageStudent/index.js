@@ -75,6 +75,18 @@ export default function ManageStudent() {
     />
   );
 
+  /* const heightInput2 = (
+    <InputMask
+      placeholder="1.80"
+      step="0.01"
+      mask="9.99"
+      name="height"
+      value=""
+    >
+      {maskProps => <Input {...maskProps} />}
+    </InputMask>
+  ); */
+
   return (
     <Container>
       {loading ? (

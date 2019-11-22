@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import { confirmAlert } from 'react-confirm-alert';
 import { useDispatch } from 'react-redux';
 import { MdAdd } from 'react-icons/md';
 
@@ -36,14 +37,23 @@ export default function Plans() {
   };
 
   const handleDelete = plan => {
-    const confirm = window.confirm(
-      `Confirmar remoção do plano ${plan.title} ?`
-    );
-
-    if (confirm) {
-      dispatch(deletePlanRequest(plan.id));
-      setPlans(plans.filter(s => s.id !== plan.id));
-    }
+    confirmAlert({
+      title: 'Confirme a exclusão',
+      message: `Deseja remover o plano ${plan.title} ?`,
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            dispatch(deletePlanRequest(plan.id));
+            setPlans(plans.filter(s => s.id !== plan.id));
+          },
+        },
+        {
+          label: 'No',
+          onClick: () => '',
+        },
+      ],
+    });
   };
 
   return (

@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { addMonths, parseISO, isBefore } from 'date-fns';
+import { addMonths, parseISO, isBefore, endOfDay } from 'date-fns';
 import Membership from '../models/Membership';
 import Plan from '../models/Plan';
 import Student from '../models/Student';
@@ -46,7 +46,7 @@ class MembershipController {
         .json({ error: 'Student already has a membership' });
     }
 
-    if (isBefore(parseISO(start_date), new Date())) {
+    if (isBefore(endOfDay(parseISO(start_date)), new Date())) {
       return res.status(400).json({ error: 'Past dates are not permitted' });
     }
 
@@ -85,10 +85,55 @@ class MembershipController {
 
   async index(req, res) {
     const memberships = await Membership.findAll({
-      attributes: ['id', 'start_date', 'end_date', 'price', 'active'],
+      attributes: [
+        'id',
+        'start_date',
+        'end_date',
+        'price',
+        'active',
+        'student_id',
+        'plan_id',
+      ],
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['name'],
+        },
+        {
+          model: Plan,
+          as: 'plan',
+          attributes: ['title'],
+        },
+      ],
     });
 
     return res.json(memberships);
+  }
+
+  async show(req, res) {
+    const { studentId } = req.params;
+
+    const membership = await Membership.findOne({
+      where: {
+        student_id: studentId,
+      },
+
+      include: [
+        {
+          model: Student,
+          as: 'student',
+          attributes: ['name'],
+        },
+        {
+          model: Plan,
+          as: 'plan',
+          attributes: ['title', 'duration'],
+        },
+      ],
+    });
+
+    return res.json(membership);
   }
 
   async update(req, res) {
@@ -96,6 +141,8 @@ class MembershipController {
       start_date: Yup.string(),
       plan_id: Yup.number(),
     });
+
+    const { studentId } = req.params;
 
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'validation fails' });
@@ -107,7 +154,11 @@ class MembershipController {
     /**
      * Search for the student membership
      */
-    const membership = await Membership.findByPk(req.params.studentId);
+    const membership = await Membership.findOne({
+      where: {
+        student_id: studentId,
+      },
+    });
 
     if (!membership) {
       return res
@@ -136,7 +187,7 @@ class MembershipController {
     const price = checkPlanExists.price * checkPlanExists.duration;
 
     const updatedMembership = await membership.update({
-      student_id: req.params.studentId,
+      student_id: studentId,
       plan_id,
       start_date: parsedStartDate,
       end_date,
@@ -147,7 +198,13 @@ class MembershipController {
   }
 
   async delete(req, res) {
-    const membership = await Membership.findByPk(req.params.studentId);
+    const { studentId } = req.params;
+
+    const membership = await Membership.findOne({
+      where: {
+        student_id: studentId,
+      },
+    });
 
     if (!membership) {
       return res.status(400).json({ error: 'Student membership not found' });

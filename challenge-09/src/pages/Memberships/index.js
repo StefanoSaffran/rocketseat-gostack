@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import { confirmAlert } from 'react-confirm-alert';
 import { MdAdd, MdCheckCircle } from 'react-icons/md';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
@@ -44,20 +45,29 @@ export default function Memberships() {
     history.push(`memberships/${studentId}`);
   };
 
-  const handleDelete = async membership => {
-    try {
-      const confirm = window.confirm(
-        `Confirmar exclusão da matricula ${membership.name} ?`
-      );
-
-      if (confirm) {
-        await api.delete(`memberships/${membership.student_id}`);
-        setMemberships(memberships.filter(m => m.id !== membership.id));
-        toast.success('Aluno excluido com sucesso');
-      }
-    } catch (err) {
-      toast.error(err.response.data.error);
-    }
+  const handleDelete = membership => {
+    confirmAlert({
+      title: 'Confirme a exclusão',
+      message: `Deseja remover a matricula do aluno ${membership.student.name} ?`,
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: async () => {
+            try {
+              await api.delete(`memberships/${membership.student_id}`);
+              setMemberships(memberships.filter(m => m.id !== membership.id));
+              toast.success('Matricula excluida com sucesso');
+            } catch (err) {
+              toast.error(err.response.data.error);
+            }
+          },
+        },
+        {
+          label: 'No',
+          onClick: () => '',
+        },
+      ],
+    });
   };
 
   return (
