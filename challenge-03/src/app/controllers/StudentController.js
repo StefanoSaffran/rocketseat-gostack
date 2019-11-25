@@ -10,7 +10,7 @@ class StudentController {
       email: Yup.string()
         .email()
         .required(),
-      birthday: Yup.date().required(),
+      age: Yup.number().required(),
       weight: Yup.number()
         .required()
         .positive()
@@ -109,7 +109,13 @@ class StudentController {
   }
 
   async delete(req, res) {
+<<<<<<< HEAD
     const student = await Student.findByPk(req.params.id);
+=======
+    const { id } = req.params;
+
+    const student = await Student.findByPk(id);
+>>>>>>> af44326bf9431f2d27f116b4ed32dfb931f22997
 
     if (!student) {
       return res.status(400).json({ error: 'Student not found.' });
