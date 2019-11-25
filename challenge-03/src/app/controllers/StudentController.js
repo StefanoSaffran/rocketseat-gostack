@@ -10,7 +10,7 @@ class StudentController {
       email: Yup.string()
         .email()
         .required(),
-      birthday: Yup.date().required(),
+      age: Yup.number().required(),
       weight: Yup.number()
         .required()
         .positive()
@@ -61,6 +61,14 @@ class StudentController {
     return res.json(students);
   }
 
+  async show(req, res) {
+    const { id } = req.params;
+
+    const student = await Student.findByPk(id);
+
+    return res.json(student);
+  }
+
   async update(req, res) {
     const { id } = req.params;
 
@@ -98,6 +106,20 @@ class StudentController {
       weight,
       height,
     });
+  }
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    const student = await Student.findByPk(id);
+
+    if (!student) {
+      return res.status(400).json({ error: 'Student not found.' });
+    }
+
+    await student.destroy();
+
+    return res.status(204).send();
   }
 }
 
