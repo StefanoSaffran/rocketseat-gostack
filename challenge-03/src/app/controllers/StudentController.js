@@ -61,6 +61,14 @@ class StudentController {
     return res.json(students);
   }
 
+  async show(req, res) {
+    const { id } = req.params;
+
+    const student = await Student.findByPk(id);
+
+    return res.json(student);
+  }
+
   async update(req, res) {
     const { id } = req.params;
 
@@ -98,6 +106,18 @@ class StudentController {
       weight,
       height,
     });
+  }
+
+  async delete(req, res) {
+    const student = await Student.findByPk(req.params.id);
+
+    if (!student) {
+      return res.status(400).json({ error: 'Student not found.' });
+    }
+
+    await student.destroy();
+
+    return res.status(204).send();
   }
 }
 
