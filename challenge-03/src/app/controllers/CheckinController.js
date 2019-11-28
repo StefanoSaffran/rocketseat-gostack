@@ -54,14 +54,20 @@ class CheckinController {
       });
     }
 
-    await Checkin.create({
+    const checkin = await Checkin.create({
       student_id: req.params.id,
     });
 
-    return res.send('Welcome');
+    return res.json(checkin);
   }
 
   async index(req, res) {
+    const checkStudentExists = await Student.findByPk(req.params.id);
+
+    if (!checkStudentExists) {
+      return res.status(401).json({ error: 'Student not found' });
+    }
+
     const checkins = await Checkin.findAll({
       where: {
         student_id: req.params.id,
