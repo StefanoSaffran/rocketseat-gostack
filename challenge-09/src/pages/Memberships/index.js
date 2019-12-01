@@ -88,45 +88,49 @@ export default function Memberships() {
               </button>
             </div>
           </div>
-          <MembershipList>
-            <li>
-              <strong>ALUNO</strong>
-              <strong style={textAlignStyle}>PLANO</strong>
-              <strong style={textAlignStyle}>INÍCIO</strong>
-              <strong style={textAlignStyle}>TÉRMINO</strong>
-              <strong style={textAlignStyle}>ATIVA</strong>
-            </li>
-            {memberships.map(membership => (
-              <li key={membership.id}>
-                <span>{membership.student.name}</span>
-                <span style={textAlignStyle}>{membership.plan.title}</span>
-                <span style={textAlignStyle}>{membership.start_date} </span>
-                <span style={textAlignStyle}>{membership.end_date}</span>
-                <span style={textAlignStyle}>
-                  <MdCheckCircle
-                    size={18}
-                    color={membership.active ? '#42cb59' : '#ddd'}
-                  />
-                </span>
-                <div>
-                  <button
-                    type="button"
-                    disabled={membership.active}
-                    className="edit-button"
-                    onClick={() => handleEdit(membership.student_id)}
-                  >
-                    editar
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleDelete(membership)}
-                  >
-                    apagar
-                  </button>
-                </div>
+          {!memberships.length ? (
+            <p>Você ainda não possui alunos matriculados.</p>
+          ) : (
+            <MembershipList>
+              <li>
+                <strong>ALUNO</strong>
+                <strong style={textAlignStyle}>PLANO</strong>
+                <strong style={textAlignStyle}>INÍCIO</strong>
+                <strong style={textAlignStyle}>TÉRMINO</strong>
+                <strong style={textAlignStyle}>ATIVA</strong>
               </li>
-            ))}
-          </MembershipList>
+              {memberships.map(membership => (
+                <li key={membership.id}>
+                  <span>{membership.student.name}</span>
+                  <span style={textAlignStyle}>{membership.plan.title}</span>
+                  <span style={textAlignStyle}>{membership.start_date} </span>
+                  <span style={textAlignStyle}>{membership.end_date}</span>
+                  <span style={textAlignStyle}>
+                    <MdCheckCircle
+                      size={18}
+                      color={membership.active ? '#42cb59' : '#ddd'}
+                    />
+                  </span>
+                  <div>
+                    <button
+                      type="button"
+                      disabled={membership.active}
+                      className="edit-button"
+                      onClick={() => handleEdit(membership.student_id)}
+                    >
+                      editar
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(membership)}
+                    >
+                      apagar
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </MembershipList>
+          )}
         </>
       )}
     </Container>
