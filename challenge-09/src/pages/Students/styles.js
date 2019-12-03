@@ -47,7 +47,7 @@ export const Container = styled.div`
         padding-left: 25px;
         width: 237px;
         height: 36px;
-        background: #f5f8f1 url(${search}) no-repeat 3px center;
+        background: #fff url(${search}) no-repeat 5px center;
         border-radius: 4px;
         border: 1px solid ${colors.border};
       }

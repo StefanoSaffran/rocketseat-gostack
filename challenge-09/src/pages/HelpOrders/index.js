@@ -56,19 +56,23 @@ export default function HelpOrders() {
           <div>
             <h1>Pedidos de auxílio</h1>
           </div>
-          <HelpOrdersList>
-            <li>
-              <strong>ALUNO</strong>
-            </li>
-            {orders.map(o => (
-              <li key={o.id}>
-                <span>{o.student.name}</span>
-                <button type="button" onClick={() => handleOpen(o)}>
-                  responder
-                </button>
+          {!orders.length ? (
+            <p>Nenhum pedido encontrado..</p>
+          ) : (
+            <HelpOrdersList>
+              <li>
+                <strong>ALUNO</strong>
               </li>
-            ))}
-          </HelpOrdersList>
+              {orders.map(o => (
+                <li key={o.id}>
+                  <span>{o.student.name}</span>
+                  <button type="button" onClick={() => handleOpen(o)}>
+                    responder
+                  </button>
+                </li>
+              ))}
+            </HelpOrdersList>
+          )}
           <Modal handleAnswer={handleAnswer} ref={modalRef}>
             {order ? (
               <>

@@ -8,7 +8,7 @@ export function* storeStudent({ payload }) {
   try {
     const { name, email, age, weight, height } = payload;
 
-    yield call(api.post, 'students', {
+    const { data } = yield call(api.post, 'students', {
       name,
       email,
       age,
@@ -17,7 +17,7 @@ export function* storeStudent({ payload }) {
     });
 
     toast.success('Aluno cadastrado com sucesso');
-    history.push('/students/new');
+    history.push(`/students/${data.id}`);
   } catch (err) {
     toast.error('Erro ao tentar cadastrar aluno');
   }

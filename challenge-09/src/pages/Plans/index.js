@@ -71,28 +71,32 @@ export default function Plans() {
               </button>
             </div>
           </div>
-          <PlanList>
-            <li>
-              <strong>TÍTULO</strong>
-              <strong style={textAlignStyle}>DURAÇÃO</strong>
-              <strong style={textAlignStyle}>VALOR p/ MÊS</strong>
-            </li>
-            {plans.map(plan => (
-              <li key={plan.id}>
-                <span>{plan.title}</span>
-                <span style={textAlignStyle}>{plan.duration}</span>
-                <span style={textAlignStyle}>{plan.price}</span>
-                <div>
-                  <button type="button" onClick={() => handleEdit(plan.id)}>
-                    editar
-                  </button>
-                  <button type="button" onClick={() => handleDelete(plan)}>
-                    apagar
-                  </button>
-                </div>
+          {!plans.length ? (
+            <p>Você ainda não cadastrou nenhum plano.</p>
+          ) : (
+            <PlanList>
+              <li>
+                <strong>TÍTULO</strong>
+                <strong style={textAlignStyle}>DURAÇÃO</strong>
+                <strong style={textAlignStyle}>VALOR p/ MÊS</strong>
               </li>
-            ))}
-          </PlanList>
+              {plans.map(plan => (
+                <li key={plan.id}>
+                  <span>{plan.title}</span>
+                  <span style={textAlignStyle}>{plan.duration}</span>
+                  <span style={textAlignStyle}>{plan.price}</span>
+                  <div>
+                    <button type="button" onClick={() => handleEdit(plan.id)}>
+                      editar
+                    </button>
+                    <button type="button" onClick={() => handleDelete(plan)}>
+                      apagar
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </PlanList>
+          )}
         </>
       )}
     </Container>
