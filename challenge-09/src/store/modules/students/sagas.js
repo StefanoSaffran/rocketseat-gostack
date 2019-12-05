@@ -19,7 +19,10 @@ export function* storeStudent({ payload }) {
     toast.success('Aluno cadastrado com sucesso');
     history.push(`/students/${data.id}`);
   } catch (err) {
-    toast.error('Erro ao tentar cadastrar aluno');
+    toast.error(
+      (err.response && err.response.data.error) ||
+        'Erro de comunicação com o servidor'
+    );
   }
 }
 
@@ -38,7 +41,10 @@ export function* updateStudent({ payload }) {
     toast.success('Aluno atualizado com sucesso');
     history.push('/students');
   } catch (err) {
-    toast.error(err.response.data.error);
+    toast.error(
+      (err.response && err.response.data.error) ||
+        'Erro de comunicação com o servidor'
+    );
     // yield put(studentsFailure());
   }
 }
@@ -51,7 +57,10 @@ export function* deleteStudent({ payload }) {
 
     toast.success('Aluno excluido com sucesso');
   } catch (err) {
-    toast.error(err.response.data.error);
+    toast.error(
+      (err.response && err.response.data.error) ||
+        'Erro de comunicação com o servidor'
+    );
   }
 }
 
