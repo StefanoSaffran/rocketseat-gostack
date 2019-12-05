@@ -46,7 +46,7 @@ class MembershipController {
         .json({ error: 'Student already has a membership' });
     }
 
-    if (isBefore(endOfDay(parseISO(start_date)), new Date())) {
+    if (isBefore(endOfDay(parsedStartDate), new Date())) {
       return res.status(400).json({ error: 'Past dates are not permitted' });
     }
 
@@ -172,8 +172,7 @@ class MembershipController {
         .json({ error: 'Only inactive membership can be updated' });
     }
 
-    console.log(parseISO(start_date), new Date());
-    if (start_date && isBefore(parseISO(start_date), new Date())) {
+    if (start_date && isBefore(endOfDay(parsedStartDate), new Date())) {
       return res.status(400).json({ error: 'Past dates are not permitted' });
     }
 
