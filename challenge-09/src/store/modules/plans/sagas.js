@@ -8,14 +8,14 @@ export function* storePlan({ payload }) {
   try {
     const { title, duration, price } = payload;
 
-    yield call(api.post, 'plans', {
+    const { data } = yield call(api.post, 'plans', {
       title,
       duration,
       price,
     });
 
     toast.success('Plano cadastrado com sucesso');
-    history.push('/plans/new');
+    history.push(`/plans/${data.id}`);
   } catch (err) {
     toast.error(
       (err.response && err.response.data.error) ||
