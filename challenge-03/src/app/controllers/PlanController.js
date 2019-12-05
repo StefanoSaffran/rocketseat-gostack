@@ -22,12 +22,10 @@ class PlanController {
     if (planExists)
       return res.status(400).json({ error: 'Plan already exists.' });
 
-    const { title, duration, price } = await Plan.create(req.body);
+    const { id } = await Plan.create(req.body);
 
     return res.json({
-      title,
-      duration,
-      price,
+      id,
     });
   }
 
