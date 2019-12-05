@@ -22,8 +22,12 @@ export function* signIn({ payload }) {
 
     history.push('/students');
   } catch (err) {
-    toast.error(err.response.data.error);
     yield put(signFailure());
+    console.tron.log(err);
+    toast.error(
+      (err.response && err.response.data.error) ||
+        'Erro de comunicação com o servidor'
+    );
   }
 }
 

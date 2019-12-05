@@ -107,7 +107,10 @@ export default function ManageMembership() {
         history.push(`/memberships/${membership.student_id}`);
       }
     } catch (err) {
-      toast.error(err.response.data.error);
+      toast.error(
+        (err.response && err.response.data.error) ||
+          'Erro de comunicação com o servidor'
+      );
     } finally {
       setLoading(false);
     }

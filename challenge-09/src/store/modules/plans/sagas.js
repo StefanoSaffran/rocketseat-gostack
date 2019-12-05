@@ -17,7 +17,10 @@ export function* storePlan({ payload }) {
     toast.success('Plano cadastrado com sucesso');
     history.push('/plans/new');
   } catch (err) {
-    toast.error(err.response.data.error);
+    toast.error(
+      (err.response && err.response.data.error) ||
+        'Erro de comunicação com o servidor'
+    );
   }
 }
 
@@ -34,7 +37,10 @@ export function* updatePlan({ payload }) {
     toast.success('Plano atualizado com sucesso');
     history.push('/plans');
   } catch (err) {
-    toast.error(err.response.data.error);
+    toast.error(
+      (err.response && err.response.data.error) ||
+        'Erro de comunicação com o servidor'
+    );
   }
 }
 

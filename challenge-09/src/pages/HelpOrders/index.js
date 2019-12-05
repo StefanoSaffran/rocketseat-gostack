@@ -36,7 +36,10 @@ export default function HelpOrders() {
       toast.success('Resposta enviada com sucesso');
       history.push('/helporders');
     } catch (err) {
-      toast.error(err.response.data.error);
+      toast.error(
+        (err.response && err.response.data.error) ||
+          'Erro de comunicação com o servidor'
+      );
     } finally {
       setLoading(false);
     }
