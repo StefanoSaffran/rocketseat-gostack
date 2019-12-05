@@ -60,7 +60,7 @@ export default function HelpOrders() {
             <h1>Pedidos de auxílio</h1>
           </div>
           {!orders.length ? (
-            <p>Nenhum pedido encontrado..</p>
+            <p>Nenhum pedido encontrado...</p>
           ) : (
             <HelpOrdersList>
               <li>

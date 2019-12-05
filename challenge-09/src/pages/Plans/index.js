@@ -72,7 +72,7 @@ export default function Plans() {
             </div>
           </div>
           {!plans.length ? (
-            <p>Você ainda não cadastrou nenhum plano.</p>
+            <p>Nenhum plano encontrado...</p>
           ) : (
             <PlanList>
               <li>

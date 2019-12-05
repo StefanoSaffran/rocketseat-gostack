@@ -89,7 +89,7 @@ export default function Memberships() {
             </div>
           </div>
           {!memberships.length ? (
-            <p>Você ainda não possui alunos matriculados.</p>
+            <p>Nenhuma matrícula encontrada...</p>
           ) : (
             <MembershipList>
               <li>

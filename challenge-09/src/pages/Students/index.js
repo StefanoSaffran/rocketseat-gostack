@@ -89,7 +89,7 @@ export default function Students() {
             </div>
           </div>
           {!filteredStudents.length ? (
-            <p>Você ainda não possui nenhum aluno cadastrado...</p>
+            <p>Nenhum aluno encontrado...</p>
           ) : (
             <StudentList>
               <li>
