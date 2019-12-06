@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
 import { toast } from 'react-toastify';
 import NumberFormat from 'react-number-format';
 import Select from 'react-select';
@@ -12,15 +13,16 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Loading from '~/components/Loading';
 import history from '~/services/history';
 import api from '~/services/api';
+import colors from '~/styles/colors';
 
 import { Container, Header, Student, Info } from './styles';
 
 export default function ManageMembership() {
-  const [membership, setMembership] = useState(null);
+  const [membership, setMembership] = useState({});
   const [students, setStudents] = useState({});
   const [plans, setPlans] = useState({});
-  const { studentId } = useParams();
   const [loading, setLoading] = useState(false);
+  const { studentId } = useParams();
 
   useEffect(() => {
     if (studentId) {
@@ -32,14 +34,6 @@ export default function ManageMembership() {
           ...response.data,
           start_date: parseISO(response.data.start_date),
           end_date: parseISO(response.data.end_date),
-          student: {
-            name: response.data.student.name,
-            label: response.data.student.name,
-          },
-          plan: {
-            title: response.data.plan.title,
-            label: response.data.plan.title,
-          },
         });
         setLoading(false);
       };
@@ -51,12 +45,8 @@ export default function ManageMembership() {
   useEffect(() => {
     if (!studentId) {
       const loadStudents = async () => {
-        const response = await api.get('students');
+        const { data } = await api.get('students');
 
-        const data = response.data.map(student => ({
-          ...student,
-          label: student.name,
-        }));
         setStudents(data);
       };
 
@@ -67,12 +57,8 @@ export default function ManageMembership() {
   useEffect(() => {
     setLoading(true);
     const loadPlans = async () => {
-      const response = await api.get('plans');
+      const { data } = await api.get('plans');
 
-      const data = response.data.map(plan => ({
-        ...plan,
-        label: plan.title,
-      }));
       setPlans(data);
       setLoading(false);
     };
@@ -116,6 +102,28 @@ export default function ManageMembership() {
     }
   };
 
+  const customStyles = {
+    option: (styles, state) => ({
+      ...styles,
+      cursor: state.isDisabled ? 'not-allowed' : 'pointer',
+      fontWeight: 'normal',
+    }),
+    control: styles => ({
+      ...styles,
+      border: `1px solid ${colors.border}`,
+      borderRadius: '4px',
+      display: 'flex',
+      width: '100%',
+      height: '45px',
+      marginTop: '7px',
+      fontWeight: 'normal',
+    }),
+    placeholder: styles => ({
+      ...styles,
+      fontWeight: 'normal',
+    }),
+  };
+
   return (
     <Container>
       {loading ? (
@@ -145,18 +153,19 @@ export default function ManageMembership() {
               <span className="inputStyle">ALUNO </span>
               <Select
                 isDisabled={studentId}
-                classNamePrefix="select-student"
-                label="ALUNO"
+                styles={customStyles}
                 options={students}
                 multiple={false}
                 name="name"
                 placeholder="Buscar aluno"
+                getOptionValue={student => student.id}
+                getOptionLabel={student => student.name}
                 value={membership ? membership.student : ''}
                 onChange={e =>
                   setMembership({
                     ...membership,
                     student_id: e.id,
-                    student: { ...e, label: e.name },
+                    student: e,
                   })
                 }
               />
@@ -165,17 +174,18 @@ export default function ManageMembership() {
               <span className="inputStyle">
                 PLANO
                 <Select
-                  label="PLANO"
+                  styles={customStyles}
                   options={plans}
                   multiple={false}
                   name="plan"
                   placeholder="Buscar plano"
                   value={membership ? membership.plan : ''}
+                  getOptionLabel={plan => plan.title}
                   onChange={e =>
                     setMembership({
                       ...membership,
                       plan_id: e.id,
-                      plan: { ...e, label: e.title },
+                      plan: e,
                       price: e.price * e.duration,
                     })
                   }
@@ -187,9 +197,13 @@ export default function ManageMembership() {
                   dateFormat="dd/MM/yyyy"
                   name="start_date"
                   placeholder="Escolha a data"
-                  minDate={!studentId && new Date()}
                   selected={membership ? membership.start_date : ''}
+                  autoComplete={false}
                   onChange={date => {
+                    if (!membership.plan) {
+                      toast.error('Favor selecionar um plano!');
+                      return;
+                    }
                     setMembership({
                       ...membership,
                       start_date: date,
@@ -215,6 +229,7 @@ export default function ManageMembership() {
                   decimalSeparator=","
                   fixedDecimalScale={2}
                   prefix="R$ "
+                  suffix=".00"
                   name="price"
                   value={membership ? membership.price : ''}
                   disabled
