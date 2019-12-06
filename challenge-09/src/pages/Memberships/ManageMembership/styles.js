@@ -76,16 +76,6 @@ export const Student = styled.div`
   width: 100%;
   padding-top: 25px;
 
-  div.css-yk16xz-control {
-    margin: 5px 0 5px;
-    border: 1px solid ${colors.border};
-    height: 44px;
-  }
-
-  div.select-student__single-value {
-    font-weight: normal;
-  }
-
   span {
     font-weight: bold;
     color: ${colors.darkGray};
@@ -96,29 +86,17 @@ export const Info = styled.div`
   display: flex;
   flex-direction: row;
 
-  span.inputStyle {
+  span {
     font-weight: bold;
     color: ${colors.darkGray};
-    margin-top: 25px;
-  }
-
-  div.css-1wa3eu0-placeholder,
-  div.css-1uccc91-singleValue {
-    font-weight: normal;
-  }
-
-  div.css-yk16xz-control {
-    margin: 5px 0 5px;
-    border: 1px solid ${colors.border};
-    height: 44px;
   }
 
   input[name='start_date'],
   input[name='end_date'],
   input[name='price'] {
     width: 100%;
-    height: 44px;
-    margin: 5px 0 5px;
+    height: 45px;
+    margin: 7px 0;
     padding: 0 15px;
     border-radius: 4px;
     border: 1px solid ${colors.border};

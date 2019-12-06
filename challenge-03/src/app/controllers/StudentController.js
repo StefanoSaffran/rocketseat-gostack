@@ -39,22 +39,29 @@ class StudentController {
   }
 
   async index(req, res) {
-    const { filter } = req.query;
+    const { page = 1, filter } = req.query;
 
     if (filter) {
-      const filteredStudents = await Student.findAll({
+      const { count, rows: students } = await Student.findAndCountAll({
         where: {
           name: {
             [Op.iLike]: `%${filter}%`,
           },
         },
+        order: ['name'],
+        limit: 10,
+        offset: (page - 1) * 10,
       });
 
-      return res.json(filteredStudents);
+      return res.json({ students, count });
     }
-    const students = await Student.findAll();
+    const { count, rows: students } = await Student.findAndCountAll({
+      order: ['name'],
+      limit: 10,
+      offset: (page - 1) * 10,
+    });
 
-    return res.json(students);
+    return res.json({ students, count });
   }
 
   async show(req, res) {
