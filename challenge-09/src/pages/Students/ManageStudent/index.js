@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
-import InputMask from 'react-input-mask';
 import { useDispatch } from 'react-redux';
 import { MdKeyboardArrowLeft, MdSave } from 'react-icons/md';
 import * as Yup from 'yup';
@@ -9,6 +8,7 @@ import * as Yup from 'yup';
 import Loading from '~/components/Loading';
 import history from '~/services/history';
 import api from '~/services/api';
+import HeightInput from '~/components/HeightInput';
 import { Container, Header } from './styles';
 import {
   updateStudentsRequest,
@@ -28,7 +28,7 @@ const schema = Yup.object().shape({
   height: Yup.number()
     .required('Campo Altura é obrigatório')
     .positive('Campo Altura precisa ser positivo')
-    .max(3.0, 'Altura máxima 3 metros'),
+    .max(2.5, 'Altura máxima 2.5 metros'),
 });
 
 export default function ManageStudent() {
@@ -62,30 +62,6 @@ export default function ManageStudent() {
     dispatch(updateStudentsRequest(data, id));
     setLoading(false);
   };
-
-  const heightInput = (
-    <Input
-      name="height"
-      placeholder="1.80"
-      step="0.01"
-      id="height"
-      render={({ field }) => {
-        return <InputMask mask="9.99" {...field} />;
-      }}
-    />
-  );
-
-  /* const heightInput2 = (
-    <InputMask
-      placeholder="1.80"
-      step="0.01"
-      mask="9.99"
-      name="height"
-      value=""
-    >
-      {maskProps => <Input {...maskProps} />}
-    </InputMask>
-  ); */
 
   return (
     <Container>
@@ -140,7 +116,7 @@ export default function ManageStudent() {
               </span>
               <span>
                 ALTURA (em metros)
-                {heightInput}
+                <HeightInput name="height" />
               </span>
             </div>
           </Form>
