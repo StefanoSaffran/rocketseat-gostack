@@ -3,19 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import { useDispatch } from 'react-redux';
 import { MdPersonAdd } from 'react-icons/md';
-import {
-  FaAngleDoubleLeft,
-  FaAngleDoubleRight,
-  FaAngleRight,
-  FaAngleLeft,
-} from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import Loading from '~/components/Loading';
+import Pagination from '~/components/Pagination';
 import history from '~/services/history';
 import api from '~/services/api';
 
-import { Container, StudentList, PageButtons } from './styles';
+import { Container, StudentList } from './styles';
 
 import { deleteStudentsRequest } from '~/store/modules/students/actions';
 
@@ -84,9 +79,6 @@ export default function Students() {
     return setPage(1);
   };
 
-  // filtro de alunos com regex - porem só filtra os alunos ja buscados,
-  // com a paginação não serve mais pois estou retornando 10 alunos por pagina.
-
   /*   const filteredStudents = filter
     ? students.filter(student => {
         const regex = new RegExp(filter, 'i');
@@ -150,37 +142,11 @@ export default function Students() {
                   </li>
                 ))}
               </StudentList>
-              <PageButtons>
-                <button
-                  type="button"
-                  disabled={page === 1}
-                  onClick={() => setPage(1)}
-                >
-                  <FaAngleDoubleLeft size={20} />
-                </button>
-                <button
-                  type="button"
-                  disabled={page === 1}
-                  onClick={() => setPage(page - 1)}
-                >
-                  <FaAngleLeft size={20} />
-                </button>
-                <p>{page}</p>
-                <button
-                  type="button"
-                  disabled={page === totalPages}
-                  onClick={() => setPage(page + 1)}
-                >
-                  <FaAngleRight size={20} />
-                </button>
-                <button
-                  type="button"
-                  disabled={page === totalPages}
-                  onClick={() => setPage(totalPages)}
-                >
-                  <FaAngleDoubleRight size={20} />
-                </button>
-              </PageButtons>
+              <Pagination
+                page={page}
+                totalPages={totalPages}
+                setPage={setPage}
+              />
             </>
           )}
         </>

@@ -38,7 +38,10 @@ export default function StorePlans() {
     }
   }, [id]);
 
-  const total = useMemo(() => unFormat(price) * duration, [duration, price]);
+  const total = useMemo(() => (unFormat(price) * duration * 100) / 100, [
+    duration,
+    price,
+  ]);
 
   const handleSubmit = e => {
     setLoading(true);

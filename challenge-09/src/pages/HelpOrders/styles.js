@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 import colors from '~/styles/colors';
 
@@ -61,6 +62,10 @@ export const HelpOrdersList = styled.ul`
       border: 0;
       color: ${colors.editButton};
       padding-left: 40px;
+
+      &:hover {
+        color: ${darken(0.1, `${colors.editButton}`)};
+      }
     }
   }
 

@@ -39,9 +39,9 @@ class StudentController {
   }
 
   async index(req, res) {
-    const { page = 1, filter } = req.query;
+    const { page, filter } = req.query;
 
-    if (filter) {
+    if (filter || page) {
       const { count, rows: students } = await Student.findAndCountAll({
         where: {
           name: {
@@ -55,13 +55,11 @@ class StudentController {
 
       return res.json({ students, count });
     }
-    const { count, rows: students } = await Student.findAndCountAll({
+    const students = await Student.findAll({
       order: ['name'],
-      limit: 10,
-      offset: (page - 1) * 10,
     });
 
-    return res.json({ students, count });
+    return res.json(students);
   }
 
   async show(req, res) {

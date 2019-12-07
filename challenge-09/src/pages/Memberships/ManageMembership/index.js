@@ -8,8 +8,6 @@ import DatePicker from 'react-datepicker';
 import { MdKeyboardArrowLeft, MdSave } from 'react-icons/md';
 import { addMonths, parseISO } from 'date-fns';
 
-import 'react-datepicker/dist/react-datepicker.css';
-
 import Loading from '~/components/Loading';
 import history from '~/services/history';
 import api from '~/services/api';
@@ -21,21 +19,19 @@ export default function ManageMembership() {
   const [membership, setMembership] = useState({});
   const [students, setStudents] = useState({});
   const [plans, setPlans] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { studentId } = useParams();
 
   useEffect(() => {
     if (studentId) {
-      setLoading(true);
       const getMembership = async () => {
-        const response = await api.get(`/memberships/${studentId}`);
+        const { data } = await api.get(`/memberships/${studentId}`);
 
         await setMembership({
-          ...response.data,
-          start_date: parseISO(response.data.start_date),
-          end_date: parseISO(response.data.end_date),
+          ...data,
+          start_date: data.plan ? parseISO(data.start_date) : '',
+          end_date: data.plan ? parseISO(data.end_date) : '',
         });
-        setLoading(false);
       };
 
       getMembership();
@@ -55,7 +51,6 @@ export default function ManageMembership() {
   }, [studentId]);
 
   useEffect(() => {
-    setLoading(true);
     const loadPlans = async () => {
       const { data } = await api.get('plans');
 
@@ -108,9 +103,13 @@ export default function ManageMembership() {
       cursor: state.isDisabled ? 'not-allowed' : 'pointer',
       fontWeight: 'normal',
     }),
-    control: styles => ({
+    control: (styles, state) => ({
       ...styles,
-      border: `1px solid ${colors.border}`,
+      border: state.isFocused && `1px solid ${colors.border}`,
+      boxShadow: state.isFocused && `1px solid ${colors.border}`,
+      '&:hover': {
+        border: `1px solid ${colors.border}`,
+      },
       borderRadius: '4px',
       display: 'flex',
       width: '100%',
@@ -186,7 +185,7 @@ export default function ManageMembership() {
                       ...membership,
                       plan_id: e.id,
                       plan: e,
-                      price: e.price * e.duration,
+                      price: (e.price * e.duration * 100) / 100,
                     })
                   }
                 />
@@ -196,9 +195,9 @@ export default function ManageMembership() {
                 <DatePicker
                   dateFormat="dd/MM/yyyy"
                   name="start_date"
+                  autoComplete="off"
                   placeholder="Escolha a data"
                   selected={membership ? membership.start_date : ''}
-                  autoComplete={false}
                   onChange={date => {
                     if (!membership.plan) {
                       toast.error('Favor selecionar um plano!');

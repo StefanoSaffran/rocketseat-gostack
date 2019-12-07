@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
+
 import colors from '~/styles/colors';
 
 export const Container = styled.div`
@@ -93,7 +94,7 @@ export const Header = styled.div`
       margin-left: 16px;
 
       &:hover {
-        background: ${darken(0.03, `${colors.primary}`)};
+        background: ${darken(0.04, `${colors.primary}`)};
       }
     }
   }

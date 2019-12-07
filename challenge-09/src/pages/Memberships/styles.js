@@ -1,7 +1,7 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 import colors from '~/styles/colors';
-import search from '~/assets/search.svg';
 
 export const Container = styled.div`
   width: 100%;
@@ -37,20 +37,14 @@ export const Container = styled.div`
         background: ${colors.primary};
         margin: 5px 0 10px;
 
+        &:hover {
+          background: ${darken(0.04, `${colors.primary}`)};
+        }
+
         span {
           padding-left: 10px;
           font-weight: bold;
         }
-      }
-
-      input {
-        margin-left: 10px;
-        padding-left: 25px;
-        width: 237px;
-        height: 36px;
-        background: #f5f8f1 url(${search}) no-repeat 3px center;
-        border-radius: 4px;
-        border: 1px solid ${colors.border};
       }
     }
   }
@@ -100,16 +94,19 @@ export const MembershipList = styled.ul`
         background: none;
         border: 0;
         color: ${colors.editButton};
-      }
 
-      button.edit-button:disabled {
-        opacity: 0.4;
-        cursor: default;
+        &:hover {
+          color: ${darken(0.1, `${colors.editButton}`)};
+        }
       }
 
       button + button {
         color: ${colors.primary};
         padding-left: 10px;
+
+        &:hover {
+          color: ${darken(0.1, `${colors.primary}`)};
+        }
       }
     }
   }
