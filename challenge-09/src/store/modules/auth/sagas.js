@@ -23,7 +23,6 @@ export function* signIn({ payload }) {
     history.push('/students');
   } catch (err) {
     yield put(signFailure());
-    console.tron.log(err);
     toast.error(
       (err.response && err.response.data.error) ||
         'Erro de comunicação com o servidor'
