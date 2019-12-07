@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 import colors from '~/styles/colors';
 import search from '~/assets/search.svg';
@@ -35,6 +36,10 @@ export const Container = styled.div`
         color: ${colors.white};
         background: ${colors.primary};
         margin: 5px 0 10px;
+
+        &:hover {
+          background: ${darken(0.06, `${colors.primary}`)};
+        }
 
         span {
           padding-left: 10px;
@@ -99,10 +104,18 @@ export const StudentList = styled.ul`
         background: none;
         border: 0;
         color: ${colors.editButton};
+
+        &:hover {
+          color: ${darken(0.1, `${colors.editButton}`)};
+        }
       }
 
       button + button {
         color: ${colors.primary};
+
+        &:hover {
+          color: ${darken(0.1, `${colors.primary}`)};
+        }
       }
     }
   }
@@ -115,5 +128,43 @@ export const StudentList = styled.ul`
     border: 0;
     padding-bottom: 0;
     margin-bottom: 0;
+  }
+`;
+
+export const PageButtons = styled.div`
+  margin-top: 15px;
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+
+  button {
+    padding: 0 10px;
+    width: 100px;
+    height: 36px;
+    border: 0;
+    border-radius: 4px;
+    color: ${colors.white};
+    background: ${colors.primary};
+
+    &:hover:not(:disabled) {
+      background: ${darken(0.06, `${colors.primary}`)};
+    }
+
+    :disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  p {
+    padding: 5px 10px;
+    height: 36px;
+    text-align: center;
+    line-height: 26px;
+    background: ${colors.white};
+    border: 1px solid ${colors.lightGray};
+    border-radius: 4px;
+    color: ${colors.darkGray};
+    margin: 0 10px;
   }
 `;
