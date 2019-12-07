@@ -3,6 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import { useDispatch } from 'react-redux';
 import { MdPersonAdd } from 'react-icons/md';
+import {
+  FaAngleDoubleLeft,
+  FaAngleDoubleRight,
+  FaAngleRight,
+  FaAngleLeft,
+} from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 import Loading from '~/components/Loading';
@@ -75,7 +81,7 @@ export default function Students() {
   const handleSearch = () => {
     if (page === 1) return loadStudents();
 
-    setPage(1);
+    return setPage(1);
   };
 
   // filtro de alunos com regex - porem só filtra os alunos ja buscados,
@@ -148,9 +154,16 @@ export default function Students() {
                 <button
                   type="button"
                   disabled={page === 1}
+                  onClick={() => setPage(1)}
+                >
+                  <FaAngleDoubleLeft size={20} />
+                </button>
+                <button
+                  type="button"
+                  disabled={page === 1}
                   onClick={() => setPage(page - 1)}
                 >
-                  Anterior
+                  <FaAngleLeft size={20} />
                 </button>
                 <p>{page}</p>
                 <button
@@ -158,7 +171,14 @@ export default function Students() {
                   disabled={page === totalPages}
                   onClick={() => setPage(page + 1)}
                 >
-                  Próxima
+                  <FaAngleRight size={20} />
+                </button>
+                <button
+                  type="button"
+                  disabled={page === totalPages}
+                  onClick={() => setPage(totalPages)}
+                >
+                  <FaAngleDoubleRight size={20} />
                 </button>
               </PageButtons>
             </>
