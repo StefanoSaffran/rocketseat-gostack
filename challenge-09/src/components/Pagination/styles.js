@@ -20,6 +20,7 @@ export const Container = styled.div`
   button {
     padding: 0 10px;
     height: 36px;
+    line-height: 16px;
     border: 0;
     border-radius: 4px;
     color: ${colors.white};

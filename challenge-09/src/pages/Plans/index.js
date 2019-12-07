@@ -83,8 +83,10 @@ export default function Plans() {
               {plans.map(plan => (
                 <li key={plan.id}>
                   <span>{plan.title}</span>
-                  <span style={textAlignStyle}>{plan.duration}</span>
-                  <span style={textAlignStyle}>{plan.price}</span>
+                  <span style={textAlignStyle}>{`${plan.duration} ${
+                    plan.duration === 1 ? 'mês' : 'meses'
+                  }`}</span>
+                  <span style={textAlignStyle}>{`R$ ${plan.price}`}</span>
                   <div>
                     <button type="button" onClick={() => handleEdit(plan.id)}>
                       editar
