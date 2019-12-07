@@ -84,7 +84,12 @@ class MembershipController {
   }
 
   async index(req, res) {
-    const memberships = await Membership.findAll({
+    const { page = 1 } = req.query;
+
+    const { count, rows: memberships } = await Membership.findAndCountAll({
+      order: ['id'],
+      limit: 10,
+      offset: (page - 1) * 10,
       attributes: [
         'id',
         'start_date',
@@ -108,7 +113,7 @@ class MembershipController {
       ],
     });
 
-    return res.json(memberships);
+    return res.json({ memberships, count });
   }
 
   async show(req, res) {
