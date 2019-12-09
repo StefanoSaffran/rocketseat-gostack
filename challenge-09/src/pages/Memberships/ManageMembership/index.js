@@ -105,7 +105,7 @@ export default function ManageMembership() {
     }),
     control: (styles, state) => ({
       ...styles,
-      border: state.isFocused && `1px solid ${colors.border}`,
+      border: `1px solid ${colors.border}`,
       boxShadow: state.isFocused && `1px solid ${colors.border}`,
       '&:hover': {
         border: `1px solid ${colors.border}`,
@@ -149,7 +149,7 @@ export default function ManageMembership() {
           </Header>
           <form id="form-memberships" onSubmit={handleSubmit}>
             <Student>
-              <span className="inputStyle">ALUNO </span>
+              <span>ALUNO </span>
               <Select
                 isDisabled={studentId}
                 styles={customStyles}
@@ -170,7 +170,7 @@ export default function ManageMembership() {
               />
             </Student>
             <Info>
-              <span className="inputStyle">
+              <span>
                 PLANO
                 <Select
                   styles={customStyles}
@@ -190,7 +190,7 @@ export default function ManageMembership() {
                   }
                 />
               </span>
-              <span className="inputStyle">
+              <span>
                 DATA DE INÍCIO
                 <DatePicker
                   dateFormat="dd/MM/yyyy"
@@ -211,7 +211,7 @@ export default function ManageMembership() {
                   }}
                 />
               </span>
-              <span className="inputStyle">
+              <span>
                 DATA DE TÉRMINO
                 <DatePicker
                   dateFormat="dd/MM/yyyy"
@@ -221,7 +221,7 @@ export default function ManageMembership() {
                   selected={membership ? membership.end_date : ''}
                 />
               </span>
-              <span className="inputStyle">
+              <span>
                 VALOR FINAL
                 <NumberFormat
                   thousandSeparator="."
