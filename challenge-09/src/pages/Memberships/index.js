@@ -11,7 +11,7 @@ import Pagination from '~/components/Pagination';
 import api from '~/services/api';
 import history from '~/services/history';
 
-import { Container, MembershipList, PageButtons } from './styles';
+import { Container, MembershipList } from './styles';
 
 export default function Memberships() {
   const [memberships, setMemberships] = useState([]);
