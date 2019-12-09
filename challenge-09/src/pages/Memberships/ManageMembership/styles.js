@@ -89,6 +89,7 @@ export const Info = styled.div`
   span {
     font-weight: bold;
     color: ${colors.darkGray};
+    width: 100%;
   }
 
   input[name='start_date'],
@@ -96,9 +97,20 @@ export const Info = styled.div`
   input[name='price'] {
     width: 100%;
     height: 45px;
-    margin: 7px 0;
+    margin: 7px 0 0;
     padding: 0 15px;
     border-radius: 4px;
     border: 1px solid ${colors.border};
+  }
+
+  @media (max-width: 588px) {
+    width: 100%;
+    flex-direction: column;
+
+    span {
+      display: flex;
+      flex-direction: column;
+      margin: 20px 0 0 !important;
+    }
   }
 `;
