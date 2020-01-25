@@ -27,3 +27,7 @@ This project was developed with the following technologies:
 
 
 [nodejs]: https://nodejs.org/
+
+## :mailbox_with_mail: Get in touch!
+
+[LinkedIn](https://www.linkedin.com/in/stefanosaffran/) | [Website](https://stefanosaffran.com)
