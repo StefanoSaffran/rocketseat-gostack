@@ -48,7 +48,7 @@ server.post('/projects', checkIdExists, (req, res) => {
     title,
     tasks: []
   }
-  projects.push(newProject);
+  projects.concat({...projects, newProject});
 
   return res.json(projects);
 })
